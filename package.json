@@ -1,11 +1,11 @@
 {
-  "name": "xdcc",
-  "version": "0.2.1",
-  "author": "Justin Li <jli@j-li.net>",
-  "description": "A simple xdcc client",
-  "homepage": "https://github.com/pushrax/node-xdcc",
-  "repository": "git://github.com/pushrax/node-xdcc",
-  "main": "lib/xdcc",
+  "name": "sxdcc",
+  "version": "0.3.1",
+  "author": "Ethan Chan <metakirby5@gmail.com>",
+  "description": "A fork of Justin Li's xdcc client with stream support",
+  "homepage": "https://github.com/metakirby5/node-sxdcc",
+  "repository": "git://github.com/metakirby5/node-sxdcc",
+  "main": "lib/sxdcc",
   "dependencies": {
     "irc": ">=0.3.0"
   }

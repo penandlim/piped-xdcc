@@ -1,4 +1,4 @@
-node-xdcc
+node-sxdcc
 =========
 
 Monkey-patches `node-irc` to do xdcc file transfers.

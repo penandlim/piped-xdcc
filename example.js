@@ -1,4 +1,4 @@
-var irc = require('./lib/xdcc').irc;
+var irc = require('./lib/sxdcc').irc;
 var fs = require('fs');
 var ProgressBar = require('progress');
 
