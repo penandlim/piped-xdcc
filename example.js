@@ -1,8 +1,14 @@
 var irc = require('./lib/xdcc').irc;
+var fs = require('fs');
 var ProgressBar = require('progress');
 
+if (process.argv.length != 4) {
+  console.log('USAGE: node example.js BOTNAME PACKNUM')
+  return;
+}
+
 var user = 'desu' + Math.random().toString(36).substr(7, 3);
-var hostUser = 'Doki|Kotomi', pack = 10, progress;
+var hostUser = process.argv[2], pack = +process.argv[3], progress;
 
 console.log('Connecting...');
 var client = new irc.Client('irc.rizon.net', user, {
@@ -14,7 +20,11 @@ var client = new irc.Client('irc.rizon.net', user, {
 client.on('join', function(channel, nick, message) {
   if (nick !== user) return;
   console.log('Joined', channel);
-  client.getXdcc(hostUser, 'xdcc send #' + pack, '.');
+  client.getXdcc(hostUser, 'xdcc send #' + pack, function(err, data, details) {
+    if (err)
+      return console.log('ERROR:\n' + err);
+    data.pipe(fs.createWriteStream('./' + details.file));
+  });
 });
 
 client.on('xdcc-connect', function(meta) {
