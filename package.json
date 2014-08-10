@@ -2,7 +2,7 @@
   "name": "sxdcc",
   "version": "0.3.1",
   "author": "Ethan Chan <metakirby5@gmail.com>",
-  "description": "A fork of Justin Li's xdcc client with stream support",
+  "description": "A fork of Justin Li's / DaVarga's xdcc client with stream support",
   "homepage": "https://github.com/metakirby5/node-sxdcc",
   "repository": "git://github.com/metakirby5/node-sxdcc",
   "main": "lib/sxdcc",

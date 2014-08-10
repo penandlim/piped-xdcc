@@ -1,57 +1,65 @@
-var irc = require('./lib/sxdcc').irc;
-var fs = require('fs');
-var ProgressBar = require('progress');
+var irc = require('irc'),
+    sxdcc = require('./lib/sxdcc'),
+    fs = require('fs'),
+    ProgressBar = require('progress');
 
-if (process.argv.length != 4) {
-  console.log('USAGE: node example.js BOTNAME PACKNUM')
+if (process.argv.length < 4) {
+  console.log('USAGE: node example.js BOTNAME PACKNUM [start]')
   return;
 }
 
 var user = 'desu' + Math.random().toString(36).substr(7, 3);
-var hostUser = process.argv[2], pack = +process.argv[3], progress;
+var bot = process.argv[2],
+    pack = +process.argv[3],
+    start = process.argv[4] ? +process.argv[4] : 0,
+    progress;
 
 console.log('Connecting...');
-var client = new irc.Client('irc.rizon.net', user, {
+
+client = new irc.Client('irc.rizon.net', user, {
   channels: [ '#doki' ],
   userName: user,
   realName: user
-});
+}).on('join', function(channel, nick, message) {
 
-client.on('join', function(channel, nick, message) {
   if (nick !== user) return;
   console.log('Joined', channel);
-  client.getXdcc(hostUser, 'xdcc send #' + pack, function(err, data, details) {
-    if (err)
-      return console.log('ERROR:\n' + err);
-    data.pipe(fs.createWriteStream('./' + details.file));
+
+  var progress,
+      last = 0;
+
+  sxdcc(client, bot, pack, start, function(err, conn) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    conn.on('connect', function(meta) {
+      console.log('Connected: ' + meta.ip + ':' + meta.port);
+      progress = new ProgressBar('Downloading... [:bar] :percent, :etas remaining', {
+        incomplete: ' ',
+        total: meta.filesize,
+        width: 20
+      });
+      this.pipe(fs.createWriteStream(meta.filename));
+    })
+
+    .on('progress', function(recieved) {
+      progress.tick(recieved - last);
+      last = recieved;
+    })
+
+    .on('error', function(err) {
+      console.log('XDCC ERROR: ' + JSON.stringify(err));
+    });
   });
-});
+})
 
-client.on('xdcc-connect', function(meta) {
-  console.log('Connected: ' + meta.ip + ':' + meta.port);
-  progress = new ProgressBar('Downloading... [:bar] :percent, :etas remaining', {
-    incomplete: ' ',
-    total: meta.length,
-    width: 20
-  });
-});
+.on('error', function (err) {
+    console.log("IRC ERROR: " + JSON.stringify(err));
+})
 
-var last = 0;
-client.on('xdcc-data', function(received) {
-  progress.tick(received - last);
-  last = received;
-});
-
-client.on('xdcc-end', function(received) {
-  console.log('Download completed');
-});
-
-client.on('notice', function(from, to, message) {
-  if (to == user && from == hostUser) {
+.on('notice', function(from, to, message) {
+  if (to == user && from == bot) {
     console.log("[notice]", message);
   }
-});
-
-client.on('error', function(message) {
-  console.error(message);
 });
