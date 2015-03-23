@@ -5,8 +5,5 @@
   "description": "A fork of Ethan Chan's xdcc client",
   "homepage": "https://github.com/Yuyuu/piped-xdcc",
   "repository": "git://github.com/Yuyuu/piped-xdcc",
-  "main": "lib/piped_xdcc",
-  "dependencies": {
-    "irc": ">=0.3.0"
-  }
+  "main": "lib/piped_xdcc"
 }
