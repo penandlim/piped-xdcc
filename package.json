@@ -1,11 +1,11 @@
 {
-  "name": "sxdcc",
-  "version": "0.3.1",
-  "author": "Ethan Chan <metakirby5@gmail.com>",
-  "description": "A fork of Justin Li's / DaVarga's xdcc client with stream support",
-  "homepage": "https://github.com/metakirby5/node-sxdcc",
-  "repository": "git://github.com/metakirby5/node-sxdcc",
-  "main": "lib/sxdcc",
+  "name": "piped-xdcc",
+  "version": "0.0.1",
+  "author": "Vincent Tertre <vincent.tertre@gmail.com>",
+  "description": "A fork of Ethan Chan's xdcc client",
+  "homepage": "https://github.com/Yuyuu/piped-xdcc",
+  "repository": "git://github.com/Yuyuu/piped-xdcc",
+  "main": "lib/piped_xdcc",
   "dependencies": {
     "irc": ">=0.3.0"
   }
