@@ -1,6 +1,6 @@
 {
   "name": "piped-xdcc",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Vincent Tertre <vincent.tertre@gmail.com>",
   "description": "A fork of Ethan Chan's xdcc client",
   "homepage": "https://github.com/Yuyuu/piped-xdcc",
