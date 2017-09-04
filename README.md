@@ -11,7 +11,8 @@ add this line to your package.json:
 }
 
 Dependencies I used:
-
+	
+~~~~
 "dependencies": {
     "ejs": "2.5.6",
     "express": "4.15.2",
@@ -20,3 +21,4 @@ Dependencies I used:
     "piped-xdcc": "penandlim/piped-xdcc",
     "socket.io": "^2.0.3"
   },
+~~~~
