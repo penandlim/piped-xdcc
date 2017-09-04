@@ -1,8 +1,8 @@
 {
   "name": "piped-xdcc",
   "version": "0.0.6",
-  "author": "Vincent Tertre <vincent.tertre@gmail.com>",
-  "description": "A fork of Ethan Chan's xdcc client",
+  "author": "Jongseung Lim <penandlim@gmail.com>",
+  "description": "A fork Vincent Tertre's fork of Ethan Chan's xdcc client",
   "homepage": "https://github.com/Yuyuu/piped-xdcc",
   "repository": "git://github.com/Yuyuu/piped-xdcc",
   "main": "lib/piped_xdcc"
