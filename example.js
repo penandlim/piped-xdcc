@@ -43,7 +43,7 @@ module.exports = function (socket) {
             console.log("myConfig = " + myConfig);
             res.writeHead(200, {
                 'Content-Type': mime.contentType(myConfig.filename),
-                'Content-Disposition': 'inline; filename="' + myConfig.filename + '"; modification-date="Wed, 12 Feb 1997 16:29:51 -0500"',
+                'Content-Disposition': 'attachment; filename="' + myConfig.filename + '"; modification-date="Wed, 12 Feb 1997 16:29:51 -0500"',
                 'Content-Length' : myConfig.filesize
             });
             global.endPipe.pipe(res);
